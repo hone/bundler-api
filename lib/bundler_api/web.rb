@@ -10,7 +10,6 @@ require 'bundler_api/honeybadger'
 require 'bundler_api/gem_helper'
 require 'bundler_api/update/job'
 require 'bundler_api/update/yank_job'
-require 'bundler_api/v2_db'
 
 
 class BundlerApi::Web < Sinatra::Base
@@ -139,7 +138,9 @@ class BundlerApi::Web < Sinatra::Base
   get "/api/v2/names.list" do
     content_type 'text/plain'
 
-    BundlerApi::V2DB.new(@conn).names.join("\n")
+    BundlerApi::GemInfo.new(@conn).names.join("\n")
+  end
+
   end
 
   get "/quick/Marshal.4.8/:id" do
