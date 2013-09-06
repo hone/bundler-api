@@ -3,7 +3,7 @@ require 'sequel'
 require 'json'
 require 'bundler_api'
 require 'bundler_api/cdn'
-require 'bundler_api/dep_calc'
+require 'bundler_api/gem_info'
 require 'bundler_api/metriks'
 require 'bundler_api/runtime_instrumentation'
 require 'bundler_api/honeybadger'
@@ -34,6 +34,8 @@ class BundlerApi::Web < Sinatra::Base
                      max_connections: ENV['MAX_THREADS'])
     end
 
+    @gem_info   = BundlerApi::GemInfo.new(@conn)
+
     super()
   end
 
@@ -51,7 +53,7 @@ class BundlerApi::Web < Sinatra::Base
 
   def get_deps
     timer = Metriks.timer('dependencies').time
-    deps  = BundlerApi::DepCalc.deps_for(@conn, gems)
+    deps  = @gem_info.deps_for(gems)
     Metriks.histogram('gems.size').update(gems.size)
     Metriks.histogram('dependencies.size').update(deps.size)
     deps
