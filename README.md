@@ -1,6 +1,8 @@
 [![Code Climate](https://codeclimate.com/github/bundler/bundler-api.png)](https://codeclimate.com/github/bundler/bundler-api)
 [![Build Status](https://travis-ci.org/bundler/bundler-api.png?branch=master)](https://travis-ci.org/bundler/bundler-api)
 
+[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 # bundler-api
 
 ## Getting Started

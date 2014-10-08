@@ -1,0 +1,26 @@
+{
+  "name": "Bundler API",
+  "website": "https://bundler.io/",
+  "repository": "https://github.com/bundler/bundler-api",
+  "success_url": "/api/v1/dependencies?gems=rack",
+  "scripts": {},
+  "env": {
+	"MAX_THREADS": {
+	  "description": "Maximum thread pool size for puma",
+	  "value": "32"
+	},
+	"MIN_THREADS": {
+	  "description": "Minimum thread pool size for puma",
+	  "value": "0"
+	},
+    "DATABASE_URL": {
+      "description": "The write database to connect to"
+    },
+	"FOLLOWER_DATABASE_URL": {
+	  "description": "The read database to connect to"
+	}
+  },
+  "addons": [
+    "librato:development"
+  ]
+}
